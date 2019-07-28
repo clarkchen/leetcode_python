@@ -5,6 +5,19 @@ https://leetcode-cn.com/contest/weekly-contest-147/problems/largest-1-bordered-s
 
 本质是 遍历矩阵，然后有一个 O(1) 的方法来看最大矩阵的面积
 
+Bug：
+最开始写了这么一段代码
+
+own_matrix = [[0]*width]*length
+
+这样的情况下
+own_matrix[0][0]=1 ,赋值会直接触发三行赋值
+
+
+正确的做法
+[[0]*width for x in range(0, length)]
+[[0 for x in range(0, width)] for x in range(0, length)]
+
 """
 
 
