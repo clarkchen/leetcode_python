@@ -35,6 +35,10 @@ class Solution:
             return -1
         return ret
 
+"""
+2^2
+
+"""
 
 
 if __name__ == '__main__':
