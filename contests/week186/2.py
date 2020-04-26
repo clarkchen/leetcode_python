@@ -2,32 +2,19 @@ from typing import List
 
 
 class Solution:
-    record = {}
-    def ans(self, cardPoints, k, s_idx, e_idx, records):
-
-        if k == 0: return 0
-        key_first = f'{s_idx}-{e_idx}-{k}'
-        if key_first in records:
-            return records[key_first]
-
-        first = cardPoints[0]
-        last = cardPoints[-1]
-        v1 = self.ans(cardPoints[1:], k - 1 , s_idx+1, e_idx,records)
-        v2 = self.ans(cardPoints[:-1], k-1, s_idx, e_idx-1, records)
-
-        v1 = first + v1
-        v2 = last + v2
-        ans = v2
-        if v1 > v2:
-            ans = v1
-
-        records[key_first] = ans
-        return ans
-
     def maxScore(self, cardPoints: List[int], k: int) -> int:
-        recods = {}
-        ans= self.ans(cardPoints, k, 0, len(cardPoints)-1, recods)
-        return ans
+        if k==len(cardPoints): return sum(cardPoints)
+        k = len(cardPoints)-k
+
+        span_sum = sum(cardPoints[:k])
+        min_value = span_sum
+
+        for i in range(k, len(cardPoints)):
+            span_sum  = span_sum-cardPoints[i-k]+cardPoints[i]
+            if min_value>span_sum:
+                min_value = span_sum
+
+        return sum(cardPoints) - min_value
 
 if __name__ == '__main__':
     s = Solution()
