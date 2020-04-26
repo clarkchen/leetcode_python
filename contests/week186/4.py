@@ -9,7 +9,6 @@ class Solution:
         dp = [0]*len(nums)
         dp[0] = nums[0]
         max_value = dp[0]
-        max_idx = 0
         pq = PriorityQueue()
         pq.put((-max_value, 0))
         for i in range(1, len(nums)):
@@ -17,7 +16,6 @@ class Solution:
 
             if max_value < dp[i]:
                 max_value = dp[i]
-                max_idx = i
             pq.put((-dp[i], i))
             if i>=k:
                 v = pq.get()
